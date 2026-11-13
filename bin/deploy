@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Deploy both roles after the local gate passes.
+#   sweep   → Apps Script project owned by the NEW owner  (.clasp.sweep.json,   clasp user $SWEEP_USER, default "new-owner")
+#   cleanup → Apps Script project owned by the OLD owner  (.clasp.cleanup.json, clasp user $CLEANUP_USER, default "old-owner")
+# Both config files are git-ignored; see .clasp.json.example.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+bin/check
+for target in sweep cleanup; do
+  cfg=".clasp.$target.json"
+  [ -f "$cfg" ] || { echo "skip $target: no $cfg"; continue; }
+  user=$([ "$target" = sweep ] && echo "${SWEEP_USER:-new-owner}" || echo "${CLEANUP_USER:-old-owner}")
+  cp "$cfg" .clasp.json
+  echo "deploy $target as clasp user '$user'"
+  clasp push --user "$user" --force
+done
+rm -f .clasp.json

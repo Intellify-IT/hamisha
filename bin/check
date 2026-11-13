@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Local gate: everything CI checks, run before every commit and push.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "1/4 tests"
+node --test tests/*.test.js
+
+echo "2/4 syntax (every source file parses on its own)"
+for f in src/*.js; do node --check "$f"; done
+
+echo "3/4 no private settings or secrets committed"
+if git ls-files --error-unmatch src/Settings.js >/dev/null 2>&1; then
+  echo "FAIL: src/Settings.js is tracked; it must stay git-ignored"; exit 1
+fi
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks detect --no-banner --redact -s . >/dev/null
+else
+  echo "  (gitleaks not installed; CI runs it)"
+fi
+
+echo "4/4 author header on every source file"
+for f in src/*.js; do
+  case "$f" in src/Settings*.js) continue ;; esac
+  grep -q "Author: Vincent Wachira" "$f" || { echo "FAIL: no author header in $f"; exit 1; }
+done
+
+echo "check: PASS"

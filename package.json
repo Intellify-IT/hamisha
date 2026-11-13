@@ -1,0 +1,15 @@
+{
+  "name": "hamisha",
+  "version": "1.0.0",
+  "description": "Moves Google Drive files to the account that should own them, by copying, on a daily schedule. Built for Workspace setups that block ownership transfer outside the organisation.",
+  "author": "Vincent Wachira <vwachira@opencapital.com>",
+  "license": "MIT",
+  "private": false,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "bin/check",
+    "push": "clasp push",
+    "deploy": "bin/deploy"
+  }
+}

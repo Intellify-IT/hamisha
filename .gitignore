@@ -1,0 +1,6 @@
+node_modules/
+src/Settings.js
+.clasprc.json
+.clasp.json
+.clasp.*.json
+!.clasp.json.example
