@@ -1,6 +1,23 @@
 {
   "permissions": {
     "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Read(*.p12)",
+      "Read(*.pfx)",
+      "Read(id_rsa*)",
+      "Read(id_ed25519*)",
+      "Read(*-key.json)",
+      "Read(*_key.json)",
+      "Read(!.env.example)",
+      "Read(~/.ssh/**)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.config/gcloud/**)",
+      "Edit(~/.config/gcloud/**)",
+      "Read(~/.aws/**)",
+      "Edit(~/.aws/**)",
       "Read(//**/.env*)",
       "Read(//**/*.pem)",
       "Read(//**/.ssh/id_*)",
@@ -23,8 +40,7 @@
       "Bash(git *push *--force*)",
       "Bash(git *push -f*)",
       "Bash(git *push * -f*)",
-      "Bash(git *push -*f *)",
-      "Bash(git *push *+*)",
+      "Bash(git *push * +*)",
       "Bash(git * --no-verify*)",
       "Bash(git *commit -n*)",
       "Bash(git *-c core.hooks*)",
@@ -42,7 +58,12 @@
       "Bash(gcloud iam *)",
       "Bash(gcloud *run *deploy*)",
       "Bash(gcloud *run *update*)",
-      "Bash(*bin/release prod*)"
+      "Bash(*bin/release prod*)",
+      "Bash(gcloud * remove-iam-policy-binding*)",
+      "Bash(git push * main)",
+      "Bash(git push * HEAD:main)",
+      "Bash(git push * master)",
+      "Bash(git push * HEAD:master)"
     ]
   }
 }
