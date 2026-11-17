@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(//**/.env*)",
+      "Read(//**/*.pem)",
+      "Read(//**/.ssh/id_*)",
+      "Read(//**/secrets/**)",
+      "Read(//**/*credentials*)",
+      "Read(//**/.docker/config.json)",
+      "Bash(gcloud secrets versions access*)",
+      "Bash(gcloud auth print-*)",
+      "Bash(gh auth token*)",
+      "Bash(security find-generic-password*)",
+      "Bash(security find-internet-password*)",
+      "Bash(printenv*)",
+      "Bash(env)",
+      "Bash(op read*)",
+      "Bash(op item get*)",
+      "Bash(vault read*)",
+      "Bash(vault kv get*)",
+      "Bash(kubectl get secret*)",
+      "Bash(aws secretsmanager get-secret-value*)",
+      "Bash(git *push *--force*)",
+      "Bash(git *push -f*)",
+      "Bash(git *push * -f*)",
+      "Bash(git *push -*f *)",
+      "Bash(git *push *+*)",
+      "Bash(git * --no-verify*)",
+      "Bash(git *commit -n*)",
+      "Bash(git *-c core.hooks*)",
+      "Bash(pkill:*)",
+      "Bash(killall:*)",
+      "Bash(kill -9 -1)"
+    ],
+    "ask": [
+      "Bash(gh pr merge * --admin*)",
+      "Bash(rm -*r* /*)",
+      "Bash(rm -*r* ~*)",
+      "Bash(rm -*r* $HOME*)",
+      "Bash(gcloud * delete *)",
+      "Bash(gcloud * add-iam-policy-binding*)",
+      "Bash(gcloud iam *)",
+      "Bash(gcloud *run *deploy*)",
+      "Bash(gcloud *run *update*)",
+      "Bash(*bin/release prod*)"
+    ]
+  }
+}
